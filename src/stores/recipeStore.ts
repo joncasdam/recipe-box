@@ -9,6 +9,12 @@ function uid(): string {
   return Math.random().toString(36).slice(2, 9)
 }
 
+function normalizeTags(tags: RecipeFormData['tags']): string[] {
+  return typeof tags === 'string'
+    ? tags.split(',').map(t => t.trim()).filter(Boolean)
+    : tags
+}
+
 function loadFromStorage(): Recipe[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
@@ -39,9 +45,7 @@ export const useRecipeStore = defineStore('recipes', () => {
       difficulty: data.difficulty as Recipe['difficulty'],
       prepTime: Number(data.prepTime),
       portions: Number(data.portions),
-      tags: typeof data.tags === 'string'
-        ? data.tags.split(',').map(t => t.trim()).filter(Boolean)
-        : data.tags,
+      tags: normalizeTags(data.tags),
       isFav: false,
       createdAt: new Date().toISOString().split('T')[0],
     }
@@ -60,9 +64,7 @@ export const useRecipeStore = defineStore('recipes', () => {
       difficulty: (data.difficulty || existing.difficulty) as Recipe['difficulty'],
       prepTime: data.prepTime !== undefined ? Number(data.prepTime) : existing.prepTime,
       portions: data.portions !== undefined ? Number(data.portions) : existing.portions,
-      tags: typeof data.tags === 'string'
-        ? data.tags.split(',').map(t => t.trim()).filter(Boolean)
-        : (data.tags ?? existing.tags),
+      tags: data.tags !== undefined ? normalizeTags(data.tags) : existing.tags,
     }
   }
 
