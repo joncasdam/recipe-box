@@ -1,16 +1,16 @@
 <template>
-  <div class="fixed inset-0 z-9999 dark:bg-slate-950 bg-slate-50 flex flex-col">
-    <div class="flex items-center justify-between px-8 py-5 border-b border-slate-800">
+  <div class="cooking-mode-modal">
+    <div class="cooking-mode-modal-header">
       <div>
-        <div class="text-saffron-500 text-sm font-medium uppercase tracking-widest mb-1">Kookmodus</div>
+        <div class="cooking-mode-modal-title">Kookmodus</div>
         <h1 class="font-display text-2xl font-bold">{{ recipe.title }}</h1>
       </div>
-      <button @click="$emit('close')" class="p-3 rounded-xl dark:bg-slate-800 border border-slate-500 dark:hover:bg-slate-700 hover:bg-slate-400 text-slate-400 hover:text-white transition-all">
+      <button @click="$emit('close')" class="cooking-mode-modal-close-btn">
         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
 
-    <div class="flex flex-1 overflow-hidden">
+    <div class="cooking-mode-modal-content">
       <div class="w-72 shrink-0 border-r border-slate-800 overflow-y-auto p-6">
         <h3 class="font-display text-lg font-semibold mb-4 dark:text-slate-300 text-slate-500">Ingrediënten</h3>
         <div class="space-y-2">
