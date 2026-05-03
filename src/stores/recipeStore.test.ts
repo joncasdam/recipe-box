@@ -21,11 +21,6 @@ describe('useRecipeStore', () => {
     setActivePinia(createPinia())
   })
 
-  it('loads sample recipes when localStorage is empty', () => {
-    const store = useRecipeStore()
-    expect(store.recipes.length).toBeGreaterThan(0)
-  })
-
   it('adds a new recipe with correct defaults', () => {
     const store = useRecipeStore()
     const initial = store.recipes.length

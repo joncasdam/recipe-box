@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import type { Recipe, RecipeFormData } from '../types'
-import { SAMPLE_RECIPES } from '../data/sampleRecipes'
+// import { SAMPLE_RECIPES } from '../data/sampleRecipes'
 import { normalizeTags } from '../utils/tags'
 
 const STORAGE_KEY = 'recipe-box-v1'
@@ -17,7 +17,8 @@ function loadFromStorage(): Recipe[] {
   } catch(e) {
     console.error('Niets gevonden op localStorage')
   }
-  return SAMPLE_RECIPES
+  // return SAMPLE_RECIPES // Verwijder het commentaar bij deze en de import om een ​​aantal recepten vooraf te laden.
+  return []
 }
 
 export const useRecipeStore = defineStore('recipes', () => {
