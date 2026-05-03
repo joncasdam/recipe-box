@@ -1,7 +1,7 @@
 <template>
   <div class="fixed inset-0 z-60 flex items-center justify-center p-4">
     <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" @click="$emit('cancel')" />
-    <div class="relative bg-slate-900 rounded-2xl border border-slate-700 p-6 max-w-sm w-full shadow-2xl">
+    <div class="relative dark:bg-slate-900 bg-slate-200 rounded-2xl border border-slate-700 p-6 max-w-sm w-full shadow-2xl">
       <div class="text-center mb-6">
         <div class="w-14 h-14 bg-rose-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg class="w-7 h-7 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -9,7 +9,7 @@
           </svg>
         </div>
         <h3 class="font-display text-lg font-semibold mb-2">{{ title }}</h3>
-        <p class="text-slate-400 text-sm">{{ message }}</p>
+        <p class="dark:text-slate-400 text-slate-500 text-sm">{{ message }}</p>
       </div>
       <div class="flex gap-3">
         <BaseButton variant="ghost" class="flex-1" @click="$emit('cancel')">Annuleren</BaseButton>
