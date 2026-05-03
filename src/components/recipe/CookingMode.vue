@@ -58,6 +58,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import type { Recipe } from '../../types'
 import { useWakeLock } from '../../composables/useWakeLock'
+import { useScaledIngredients } from '../../composables/useScaledIngredients'
 
 const props = defineProps<{ recipe: Recipe; portions: number }>()
 const emit = defineEmits<{ close: [] }>()
@@ -68,14 +69,8 @@ const stepIdx = ref(0)
 const total = computed(() => props.recipe.steps.length)
 const currentStep = computed(() => props.recipe.steps[stepIdx.value])
 const ratio = computed(() => props.portions / props.recipe.portions)
-const scaledIngredients = computed(() =>
-  props.recipe.ingredients.map(ing => ({
-    ...ing,
-    scaledQty: ing.quantity
-      ? (parseFloat(ing.quantity) * ratio.value).toFixed(2).replace(/\.?0+$/, '')
-      : '',
-  }))
-)
+const ingredients = computed(() => props.recipe.ingredients)
+const scaledIngredients = useScaledIngredients(ingredients, ratio)
 
 function next() { if (stepIdx.value < total.value - 1) stepIdx.value++ }
 function prev() { if (stepIdx.value > 0) stepIdx.value-- }

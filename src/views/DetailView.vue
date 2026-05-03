@@ -116,6 +116,7 @@ import { useRouter } from 'vue-router'
 import { useRecipeStore } from '../stores/recipeStore'
 import { useToastStore } from '../stores/toastStore'
 import { categoryColor, difficultyColor } from '../helpers/recipeHelpers'
+import { useScaledIngredients } from '../composables/useScaledIngredients'
 import Badge from '../components/ui/Badge.vue'
 import FavButton from '../components/ui/FavButton.vue'
 import DifficultyStars from '../components/ui/DifficultyStars.vue'
@@ -134,14 +135,8 @@ const portions = ref(recipe.value?.portions ?? 4)
 watch(() => recipe.value?.portions, v => { if (v) portions.value = v }, { immediate: true })
 
 const ratio = computed(() => portions.value / (recipe.value?.portions ?? 1))
-const scaledIngredients = computed(() =>
-  recipe.value?.ingredients.map(ing => ({
-    ...ing,
-    scaledQty: ing.quantity
-      ? (parseFloat(ing.quantity) * ratio.value).toFixed(2).replace(/\.?0+$/, '')
-      : '',
-  })) ?? []
-)
+const ingredients = computed(() => recipe.value?.ingredients ?? [])
+const scaledIngredients = useScaledIngredients(ingredients, ratio)
 
 const showCooking = ref(false)
 const showEdit = ref(false)
