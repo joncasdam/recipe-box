@@ -1,7 +1,8 @@
 import { ref, computed } from 'vue'
+import type { Ref } from 'vue'
 import type { Recipe, FilterState } from '../types'
 
-export function useRecipeFilter(recipes: import('vue').Ref<Recipe[]>) {
+export function useRecipeFilter(recipes: Ref<Recipe[]>) {
   const filters = ref<FilterState>({
     search: '',
     category: '',
