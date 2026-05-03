@@ -111,7 +111,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useRecipeStore } from '../stores/recipeStore'
 import { useToastStore } from '../stores/toastStore'
@@ -132,7 +132,6 @@ const toast = useToastStore()
 
 const recipe = computed(() => store.getById(props.id))
 const portions = ref(recipe.value?.portions ?? 4)
-watch(() => recipe.value?.portions, v => { if (v) portions.value = v }, { immediate: true })
 
 const ratio = computed(() => portions.value / (recipe.value?.portions ?? 1))
 const ingredients = computed(() => recipe.value?.ingredients ?? [])
