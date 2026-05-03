@@ -2,17 +2,12 @@ import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import type { Recipe, RecipeFormData } from '../types'
 import { SAMPLE_RECIPES } from '../data/sampleRecipes'
+import { normalizeTags } from '../utils/tags'
 
 const STORAGE_KEY = 'recipe-box-v1'
 
 function uid(): string {
   return Math.random().toString(36).slice(2, 9)
-}
-
-function normalizeTags(tags: RecipeFormData['tags']): string[] {
-  return typeof tags === 'string'
-    ? tags.split(',').map(t => t.trim()).filter(Boolean)
-    : tags
 }
 
 function loadFromStorage(): Recipe[] {
