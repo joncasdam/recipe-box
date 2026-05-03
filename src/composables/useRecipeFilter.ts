@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue'
 import type { Ref } from 'vue'
 import type { Recipe, FilterState } from '../types'
+import { SEARCH_STOP_WORDS } from '../constants/recipeConstants'
 
 export function useRecipeFilter(recipes: Ref<Recipe[]>) {
   const filters = ref<FilterState>({
@@ -29,12 +30,14 @@ export function useRecipeFilter(recipes: Ref<Recipe[]>) {
 
     list = list.filter(r => r.prepTime <= filters.value.maxTime)
 
-    const q = filters.value.search.trim().toLowerCase()
-    if (q) {
+    const terms = filters.value.search.trim().toLowerCase().split(/\s+/).filter(w => w && !SEARCH_STOP_WORDS.includes(w))
+    if (terms.length) {
       list = list.filter(r =>
-        r.title.toLowerCase().includes(q) ||
-        r.tags.some(t => t.toLowerCase().includes(q)) ||
-        r.ingredients.some(i => i.name.toLowerCase().includes(q))
+        terms.some(term =>
+          r.title.toLowerCase().includes(term) ||
+          r.tags.some(t => t.toLowerCase().includes(term)) ||
+          r.ingredients.some(i => i.name.toLowerCase().includes(term))
+        )
       )
     }
 
