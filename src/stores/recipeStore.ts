@@ -14,7 +14,7 @@ function loadFromStorage(): Recipe[] {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (raw) return JSON.parse(raw) as Recipe[]
   } catch(e) {
-    console.log('Niets gevonden op localStorage')
+    console.error('Niets gevonden op localStorage')
   }
   return SAMPLE_RECIPES
 }
