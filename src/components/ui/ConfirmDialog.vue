@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 z-[60] flex items-center justify-center p-4">
+  <div class="fixed inset-0 z-60 flex items-center justify-center p-4">
     <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" @click="$emit('cancel')" />
     <div class="relative bg-slate-900 rounded-2xl border border-slate-700 p-6 max-w-sm w-full shadow-2xl">
       <div class="text-center mb-6">
