@@ -119,10 +119,8 @@ const totalFavs = computed(() => recipes.value.filter(r => r.isFav).length)
 const timeLabel = computed(() => filters.value.maxTime >= 180 ? 'Alles' : `≤ ${filters.value.maxTime} min`)
 
 function openAdd() { editRecipe.value = null; showModal.value = true }
-// function openEdit(r: Recipe) { editRecipe.value = r; showModal.value = true }
 function onSaved() { showModal.value = false }
 
-// function confirmDelete(id: string) { deleteTarget.value = id; showConfirm.value = true }
 function doDelete() {
   if (deleteTarget.value) { store.deleteRecipe(deleteTarget.value); useToastStore().show('Recept verwijderd') }
   showConfirm.value = false; deleteTarget.value = null
