@@ -90,13 +90,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useRecipeStore } from '../stores/recipeStore'
 import { useToastStore } from '../stores/toastStore'
 import { useRecipeFilter } from '../composables/useRecipeFilter'
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
 import { CATEGORIES, DIFFICULTIES } from '../constants/recipeConstants'
 import type { Recipe } from '../types'
 import RecipeCard from '../components/recipe/RecipeCard.vue'
