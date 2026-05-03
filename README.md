@@ -8,14 +8,14 @@ Een Vue 3-app voor receptbeheer met TypeScript strict mode, Pinia, Vue Router en
 - 📋 Receptenoverzicht met responsieve rasterindeling
 - ➕ Recepten toevoegen/bewerken via modal met volledige formuliervalidatie
 - 🗑️ Recepten verwijderen met bevestigingsdialoog
-- 🔍 Filteren op categorie, moeilijkheidsgraad, bereidingstijd + vrije tekstzoekfunctie
+- 🔍 Filteren op categorie, moeilijkheidsgraad, bereidingstijd + vrije tekstzoekfunctie (ondersteunt natuurlijke taal zoals "Wat kan ik maken met kip?")
 - 🔃 Sorteren op nieuwste, naam (A–Z) of bereidingstijd
 - ❤️ Favoriet aan/uitzetten op kaarten en detailpagina
 - 📄 Detailpagina met portieaanpassing (past ingrediënthoeveelheden aan)
 - 🍳 Kookmodus — schermvullend stap voor stap met Wake Lock API
 - 🌙 Donkere/lichte modus (navigatiebalk)
 - 💾 localStorage-persistentie
-- 🧪 Eenheidstests voor stores (Vitest)
+- 🧪 Eenheidstests voor stores en composables (Vitest)
 
 ## Technologiestack
 - Vue 3 (Composition API + `<script setup>`)
@@ -34,12 +34,13 @@ src/
 │   ├── ui/           # BaseButton, BaseInput, BaseSelect, Badge, FavButton,
 │   │                 # DifficultyStars, ConfirmDialog, ToastContainer
 │   └── recipe/       # RecipeCard, RecipeModal, CookingMode
-├── composables/      # useFormValidation, useRecipeFilter, useWakeLock
+├── composables/      # useFormValidation, useRecipeFilter, useScaledIngredients, useWakeLock
 ├── config/           # recipeConfig (categorieën, moeilijkheidsgraden, eenheden met Tailwind-klassen)
 ├── constants/        # recipeConstants (getypeerde arrays afgeleid van config)
 ├── helpers/          # recipeHelpers (categoryColor, difficultyColor)
 ├── stores/           # recipeStore, toastStore, darkModeStore
 ├── types/            # TypeScript-interfaces (Recipe, Ingredient, Step, FilterState, …)
+├── utils/            # tags (normalisatie en parsing)
 ├── views/            # HomeView, DetailView
 ├── router/           # Vue Router-configuratie
 └── data/             # sampleRecipes
@@ -63,14 +64,14 @@ A Vue 3 recipe management app with TypeScript strict mode, Pinia, Vue Router, an
 - 📋 Recipe overview with responsive grid layout
 - ➕ Add/Edit recipes via modal with full form validation
 - 🗑️ Delete recipes with confirmation dialog
-- 🔍 Filter by category, difficulty, prep time + free text search
+- 🔍 Filter by category, difficulty, prep time + free text search (supports natural language like "What can I make with chicken?")
 - 🔃 Sort by newest, name (A–Z), or prep time
 - ❤️ Favourite toggle on cards and detail page
 - 📄 Detail page with portion scaler (updates ingredient quantities)
 - 🍳 Cooking mode — fullscreen step-by-step with Wake Lock API
 - 🌙 Dark / light mode toggle (navbar)
 - 💾 localStorage persistence
-- 🧪 Unit tests for stores (Vitest)
+- 🧪 Unit tests for stores and composables (Vitest)
 
 ## Tech Stack
 - Vue 3 (Composition API + `<script setup>`)
@@ -89,12 +90,13 @@ src/
 │   ├── ui/           # BaseButton, BaseInput, BaseSelect, Badge, FavButton,
 │   │                 # DifficultyStars, ConfirmDialog, ToastContainer
 │   └── recipe/       # RecipeCard, RecipeModal, CookingMode
-├── composables/      # useFormValidation, useRecipeFilter, useWakeLock
+├── composables/      # useFormValidation, useRecipeFilter, useScaledIngredients, useWakeLock
 ├── config/           # recipeConfig (categories, difficulties, units with Tailwind classes)
 ├── constants/        # recipeConstants (typed arrays derived from config)
 ├── helpers/          # recipeHelpers (categoryColor, difficultyColor)
 ├── stores/           # recipeStore, toastStore, darkModeStore
 ├── types/            # TypeScript interfaces (Recipe, Ingredient, Step, FilterState, …)
+├── utils/            # tags (normalisation and parsing)
 ├── views/            # HomeView, DetailView
 ├── router/           # Vue Router config
 └── data/             # sampleRecipes
